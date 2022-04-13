@@ -1,4 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { Card, Col, Row } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+import apiFilmes from '../../services/apiFilmes'
+
 
 const Filmeslancamentos = () => {
   
@@ -17,7 +21,7 @@ const Filmeslancamentos = () => {
 
         <Row>
             {filmes.map(item => (
-                <Col md={3} className="mb-3">
+                <Col key={item.id} md={3} className="mb-3">
                     <Card>
                         <Card.Img variant="top" src={'https://image.tmdb.org/t/p/w500/' + item.backdrop_path} />
                         <Card.Body>

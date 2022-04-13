@@ -1,4 +1,8 @@
-import React from 'react'
+
+import React, { useEffect, useState } from 'react'
+import { Card, Col, Row } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+import apiFilmes from '../../services/apiFilmes'
 
 const FilmesemCartazes = () => {
  

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Card, Col, Row } from 'react-bootstrap'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import apiFilmes from '../../services/apiFilmes'
 
 const FilmesDetalhes = () => {
@@ -13,7 +13,7 @@ const FilmesDetalhes = () => {
         apiFilmes.get('movie/' + params.id + '?language=pt-BR').then(resultado => {
             setFilme(resultado.data)
         })
-    }, [])
+    }, [params])
 
     return (
         <div>
@@ -32,6 +32,7 @@ const FilmesDetalhes = () => {
                     <p><strong>Data de Lançamento: </strong>{filme.release_date}</p>
                     <p><strong>Orçamento: </strong>{filme.budget}</p>
                     <p><strong>Sinopse: </strong>{filme.overview}</p>
+                    <Link className="btn btn-danger" to={-1}>Voltar</Link>
                 </Col>
             </Row>
 
