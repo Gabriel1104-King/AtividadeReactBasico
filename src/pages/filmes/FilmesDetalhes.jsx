@@ -6,18 +6,28 @@ import apiFilmes from '../../services/apiFilmes'
 const FilmesDetalhes = () => {
 
     const params = useParams()
-
     const [filme, setFilme] = useState({})
+    const [atores, setAtores] = useState([])
+   
 
     useEffect(() => {
         apiFilmes.get('movie/' + params.id + '?language=pt-BR').then(resultado => {
             setFilme(resultado.data)
         })
+
+        apiFilmes.get('movie/' + params.id + '/credits?language=pt-BR').then(resultado => {
+            setAtores(resultado.data.cast)
+            setAtores(resultado.data.cast)
+        })
+
     }, [params])
+
+
+    
 
     return (
         <div>
-            
+           
             <h1>{filme.title}</h1>
 
             <Row>
@@ -34,6 +44,22 @@ const FilmesDetalhes = () => {
                     <p><strong>Sinopse: </strong>{filme.overview}</p>
                     <Link className="btn btn-danger" to={-1}>Voltar</Link>
                 </Col>
+
+
+                <h2>Atores</h2> 
+                {atores.map(item => (
+                <Col md={4} className='mt-3'>
+                    <Card>
+                        <Link >
+                     <Card.Img title={item.name} variant="top" src={'https://image.tmdb.org/t/p/w500/' + item.profile_path} />
+                     </Link>
+                     </Card>
+                </Col> 
+                ))}
+               
+          
+       
+
             </Row>
 
         </div>
